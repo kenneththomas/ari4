@@ -1,0 +1,4 @@
+************
+ari 4.0
+************
+intial checkin of ari4 bot before git and source control and shit
