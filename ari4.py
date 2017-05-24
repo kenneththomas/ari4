@@ -1,7 +1,15 @@
 import discord
 import re
+import random
+import time
+import markovify
 
-# todo move this somewhere
+with open('example.txt') as f:
+    text= f.read()
+
+text_model = markovify.Text(text)
+
+
 m = re.compile(r'[k|K][e|E][k|K]')
 
 
@@ -21,7 +29,10 @@ async def on_message(message):
         msg = 'Hello {0.author.mention}'.format(message)
         await client.send_message(message.channel, msg)
 
+
     if ('retard') in message.content:
+        await client.send_typing(message.channel)
+        time.sleep(.5)
         msg = '{0.author.mention}, please watch your language. Next time, say r*tard.'.format(message)
         await client.send_message(message.channel, msg)
 
@@ -35,6 +46,16 @@ async def on_message(message):
 
     if ('joey') in message.content:
         msg = 'who?'
+        await client.send_message(message.channel, msg)
+
+    if ('ari4') in message.content:
+        await client.send_typing(message.channel)
+        time.sleep(2)
+        msg = text_model.make_short_sentence(140).format(message)
+        await client.send_message(message.channel, msg)
+        await client.send_typing(message.channel)
+        time.sleep(5)
+        msg = text_model.make_short_sentence(140).format(message)
         await client.send_message(message.channel, msg)
 
 #bannedwords, refactor later
@@ -68,6 +89,30 @@ async def on_message(message):
             msg = 'drama counter is now: ' + str(len(dramacounter))
             await client.send_message(message.channel, msg)
 
+    if ('trump') in message.content:
+        willitsay = random.randint(1,8)
+        if willitsay == 1:
+            messagepicker = random.randint(1,4)
+            if messagepicker == 1:
+                msg = 'no politica'
+                await client.send_message(message.channel, msg)
+            if messagepicker == 2:
+                msg = 'please tone down the politica'
+                await client.send_message(message.channel, msg)
+            if messagepicker == 3:
+                msg = '3 big evil 1. racism 2. religion 3. politica'
+                await client.send_message(message.channel, msg)
+            if messagepicker == 4:
+                msg = 'politica = enemy universume love'
+                await client.send_message(message.channel, msg)
+
+    if message.content.startswith('+'):
+        willitsay = random.randint(1,3)
+        if willitsay == 1:
+            await client.send_typing(message.channel)
+            time.sleep(.5)
+            msg = '+'
+            await client.send_message(message.channel, msg)
 
 
 @client.event
@@ -78,4 +123,4 @@ async def on_ready():
     print('------')
 
 
-client.run('dummy')
+client.run('absolutelynot')

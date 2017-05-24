@@ -1,4 +1,13 @@
 ************
+ari 4.1
+************
+occasionally responds to mentions of "trump" with "no politica" esque statements
+occasionally responds to "+" with "+"
+adding fake typing before some messages
+added markovify and some darcie wilder based text for personality
+
+
+************
 ari 4.0
 ************
-intial checkin of ari4 bot before git and source control and shit
+intial checkin of ari4 bot before git and version control and shit
