@@ -5,7 +5,7 @@ import time
 import markovify
 
 with open('example.txt') as f:
-    text= f.read()
+    text = f.read()
 
 text_model = markovify.Text(text)
 

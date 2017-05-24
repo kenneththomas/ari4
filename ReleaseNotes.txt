@@ -1,4 +1,10 @@
 ************
+ari 4.1.1
+************
+fixed misplaced equal sign
+made personality more parsable
+
+************
 ari 4.1
 ************
 occasionally responds to mentions of "trump" with "no politica" esque statements
