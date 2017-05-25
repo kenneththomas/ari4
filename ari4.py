@@ -4,7 +4,7 @@ import random
 import time
 import markovify
 
-with open('example.txt') as f:
+with open('personality.txt') as f:
     text = f.read()
 
 text_model = markovify.Text(text)
@@ -15,6 +15,9 @@ m = re.compile(r'[k|K][e|E][k|K]')
 
 client = discord.Client()
 
+
+kekcounter = []
+dramacounter = []
 
 @client.event
 async def on_message(message):
