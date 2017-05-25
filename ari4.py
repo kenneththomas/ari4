@@ -15,8 +15,6 @@ m = re.compile(r'[k|K][e|E][k|K]')
 
 client = discord.Client()
 
-kekcounter = []
-dramacounter = []
 
 @client.event
 async def on_message(message):
@@ -51,10 +49,6 @@ async def on_message(message):
     if ('ari4') in message.content:
         await client.send_typing(message.channel)
         time.sleep(2)
-        msg = text_model.make_short_sentence(140).format(message)
-        await client.send_message(message.channel, msg)
-        await client.send_typing(message.channel)
-        time.sleep(5)
         msg = text_model.make_short_sentence(140).format(message)
         await client.send_message(message.channel, msg)
 

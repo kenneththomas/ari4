@@ -1,4 +1,11 @@
 ************
+ari 4.1.2
+************
+i literally thought you had to define empty lists - removed
+ari4 only says 1 thing instead of 2 things now
+
+
+************
 ari 4.1.1
 ************
 fixed misplaced equal sign
