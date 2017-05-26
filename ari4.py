@@ -15,7 +15,6 @@ m = re.compile(r'[k|K][e|E][k|K]')
 
 client = discord.Client()
 
-
 kekcounter = []
 dramacounter = []
 
@@ -49,11 +48,21 @@ async def on_message(message):
         msg = 'who?'
         await client.send_message(message.channel, msg)
 
+    if ('hotlanta') in message.content:
+        msg = 'where?'
+        await client.send_message(message.channel, msg)
+
+
     if ('ari4') in message.content:
         await client.send_typing(message.channel)
         time.sleep(2)
         msg = text_model.make_short_sentence(140).format(message)
         await client.send_message(message.channel, msg)
+        await client.send_typing(message.channel)
+        time.sleep(5)
+        msg = text_model.make_short_sentence(140).format(message)
+        await client.send_message(message.channel, msg)
+
 
 #bannedwords, refactor later
 
@@ -61,7 +70,7 @@ async def on_message(message):
 
     if match:
         kekcounter.append(message.author)
-        msg = '{0.author.mention} has said a banned word '.format(message) + str(kekcounter.count(message.author)) + ' times. Using this word 4 times will result in an automatic ban.'
+        msg = '{0.author.mention} has said a banned word '.format(message) + str(kekcounter.count(message.author)) + ' time(s). Using this word 4 times will result in an automatic ban.'
         await client.send_message(message.channel, msg)
         if kekcounter.count(message.author) == 4:
             msg = '{0.author.mention} has been banned for using a banned word 4 times.'.format(message)
@@ -71,6 +80,12 @@ async def on_message(message):
     if message.content.startswith('!checkdrama'):
         msg = 'drama level in chat is currently: ' + str(len(dramacounter))
         await client.send_message(message.channel, msg)
+        if message.author in dramacounter:
+            msg = '{0.author.mention}, you currently see drama'.format(message)
+            await client.send_message(message.channel, msg)
+        else:
+            msg = '{0.author.mention}, you currently do not see drama'.format(message)
+            await client.send_message(message.channel, msg)
 
     if message.content.startswith('!drama'):
         if message.author in dramacounter:
@@ -111,6 +126,18 @@ async def on_message(message):
             msg = '+'
             await client.send_message(message.channel, msg)
 
+    if message.content.startswith('whos mans is this'):
+        messagepicker = random.randint(1, 2)
+        await client.send_typing(message.channel)
+        time.sleep(2)
+        if messagepicker == 1:
+            msg = 'absolutely whos mans'
+            await client.send_message(message.channel, msg)
+        if messagepicker == 2:
+            msg = 'come collect'
+            await client.send_message(message.channel, msg)
+
+
 
 @client.event
 async def on_ready():
@@ -120,4 +147,4 @@ async def on_ready():
     print('------')
 
 
-client.run('absolutelynot')
+client.run('eastereggiguess')
