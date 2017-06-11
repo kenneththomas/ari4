@@ -4,6 +4,8 @@ import random
 import time
 import markovify
 
+version = 'I am running on Ari 4.3!'
+
 with open('personality.txt') as f:
     text = f.read()
 
@@ -136,6 +138,18 @@ async def on_message(message):
         if messagepicker == 2:
             msg = 'come collect'
             await client.send_message(message.channel, msg)
+
+    if message.content.startswith('!nice'):
+        await client.send_typing(message.channel)
+	time.sleep(2)
+	msg = '*please be nice in chat*'
+        await client.send_message(message.channel, msg)
+
+
+    if message.content.startswith('!version'):
+        await client.send_typing(message.channel)
+        time.sleep(2)
+        await client.send_message(message.channel, version)
 
 
 
