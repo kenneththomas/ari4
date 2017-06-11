@@ -19,4 +19,4 @@ async def on_message(message):
                 msg ='{0.author.mention} is authorized to perform admin commands'.format(message)
                 await client.send_message(message.channel, msg)
         else:
-        return
+                return
