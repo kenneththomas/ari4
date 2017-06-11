@@ -1,4 +1,10 @@
 ************
+ari 4.4
+************
+created config file "maricon.py"
+moved logon key to config file
+
+************
 ari 4.3
 ************
 added less annoying lite version

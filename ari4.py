@@ -3,8 +3,9 @@ import re
 import random
 import time
 import markovify
+import maricon
 
-version = 'I am running on Ari 4.3!'
+version = 'I am running on Ari 4.4!'
 
 with open('personality.txt') as f:
     text = f.read()
@@ -161,4 +162,4 @@ async def on_ready():
     print('------')
 
 
-client.run('eastereggiguess')
+client.run('maricon.key')
