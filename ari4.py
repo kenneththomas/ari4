@@ -5,7 +5,7 @@ import time
 import markovify
 import maricon
 
-version = 'I am running on Ari 4.4!'
+version = 'I am running on Ari 4.5!'
 
 with open('personality.txt') as f:
     text = f.read()
@@ -145,6 +145,14 @@ async def on_message(message):
 	time.sleep(2)
 	msg = '*please be nice in chat*'
         await client.send_message(message.channel, msg)
+
+    if message.content == 'a':
+        willitsay = random.randint(1,8)
+        if willitsay == 1:
+            await client.send_typing(message.channel)
+            time.sleep(.5)
+            msg = 'a'
+            await client.send_message(message.channel, msg)
 
 
     if message.content.startswith('!version'):

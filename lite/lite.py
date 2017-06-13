@@ -3,7 +3,7 @@ import re
 import random
 import time
 
-version = 'I am running on Ari 4.3 Lite!'
+version = 'I am running on Ari 4.5 Lite!'
 
 
 m = re.compile(r'[k|K][e|E][k|K]')
@@ -80,9 +80,19 @@ async def on_message(message):
         time.sleep(2)
         await client.send_message(message.channel, version)
 
+    if message.content.startswith('!nice'):
+        await client.send_typing(message.channel)
+        time.sleep(2)
+        msg = '*please be nice in chat*'
+        await client.send_message(message.channel, msg)
 
-
-
+    if message.content == 'a':
+        willitsay = random.randint(1,8)
+        if willitsay == 1:
+            await client.send_typing(message.channel)
+            time.sleep(.5)
+            msg = 'a'
+            await client.send_message(message.channel, msg)
 
 @client.event
 async def on_ready():
@@ -92,4 +102,4 @@ async def on_ready():
     print('------')
 
 
-client.run('MjEyNjkxOTg5NDgzNzQ5Mzc3.C2CGBA.mIyQzC4naW6W0yXYgROafUy_aMA')
+client.run('yourbotkey')
