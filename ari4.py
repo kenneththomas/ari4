@@ -104,6 +104,25 @@ async def on_message(message):
             msg = 'drama counter is now: ' + str(len(dramacounter))
             await client.send_message(message.channel, msg)
 
+    if len(dramacounter) >= 10:
+        await client.delete_message(message)
+        msg = 'drama level in chat is currently: ' + str(len(dramacounter))
+        await client.send_message(message.channel, msg)
+        messagepicker = random.randint(1, 4)
+        if messagepicker == 1:
+            msg = 'https://greatist.com/happiness/breathing-exercises-relax'
+            await client.send_message(message.channel, msg)
+        if messagepicker == 2:
+            msg = 'http://www.beeraw.com/calm-down.html'
+            await client.send_message(message.channel, msg)
+        if messagepicker == 3:
+            msg = 'http://i.imgur.com/2jV2Dcq.jpg'
+            await client.send_message(message.channel, msg)
+        if messagepicker == 4:
+            msg = 'https://www.mindbodygreen.com/0-4386/A-Simple-Breathing-Exercise-to-Calm-Your-Mind-Body.html'
+            await client.send_message(message.channel, msg)
+
+
     if ('trump') in message.content:
         willitsay = random.randint(1,8)
         if willitsay == 1:
