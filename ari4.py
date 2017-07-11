@@ -13,7 +13,7 @@ with open('personality.txt') as f:
 text_model = markovify.Text(text)
 
 
-m = re.compile(r'[k|K][e|E][k|K]')
+m = re.compile(r'[kK][eE][kK]')
 
 
 client = discord.Client()

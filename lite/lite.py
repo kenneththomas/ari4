@@ -6,7 +6,7 @@ import time
 version = 'I am running on Ari 4.5 Lite!'
 
 
-m = re.compile(r'[k|K][e|E][k|K]')
+m = re.compile(r'[kK][eE][kK]')
 
 
 client = discord.Client()
