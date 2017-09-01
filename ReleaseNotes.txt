@@ -1,4 +1,10 @@
 ************
+ari 4.7
+************
+ari helps you figure out who bgb is
+
+
+************
 ari 4.6
 ************
 when drama hits 10, locks chat and ari4 types out breathing exercises

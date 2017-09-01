@@ -5,7 +5,7 @@ import time
 import markovify
 import maricon
 
-version = 'I am running on Ari 4.5!'
+version = 'I am running on Ari 4.7!'
 
 with open('personality.txt') as f:
     text = f.read()
@@ -14,7 +14,7 @@ text_model = markovify.Text(text)
 
 
 m = re.compile(r'[kK][eE][kK]')
-
+bgbscanner = re.compile(r'whos .*b')
 
 client = discord.Client()
 
@@ -79,6 +79,15 @@ async def on_message(message):
             msg = '{0.author.mention} has been banned for using a banned word 4 times.'.format(message)
             await client.ban(message.author, delete_message_days=0)
             await client.send_message(message.channel, msg)
+
+#whos bill garlsby
+
+    bgbmatch = bgbscanner.search(message.content)
+
+    if bgbmatch:
+        await client.send_typing(message.channel)
+        msg = message.content[5] + 'ill ' + message.content[6] + 'arlsby'
+        await client.send_message(message.channel, msg)
 
     if message.content.startswith('!checkdrama'):
         msg = 'drama level in chat is currently: ' + str(len(dramacounter))
