@@ -14,7 +14,7 @@ text_model = markovify.Text(text)
 
 
 m = re.compile(r'[kK][eE][kK]')
-bgbscanner = re.compile(r'whos .*b')
+bgbscanner = re.compile(r'whos [a-z][a-z]b$')
 
 client = discord.Client()
 
