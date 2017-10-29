@@ -1,4 +1,10 @@
 ************
+ari 4.8
+************
+Logging Messages
+Message Stats
+
+************
 ari 4.7
 ************
 ari helps you figure out who bgb is

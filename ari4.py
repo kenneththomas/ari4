@@ -4,8 +4,9 @@ import random
 import time
 import markovify
 import maricon
+from datetime import datetime
 
-version = 'I am running on Ari 4.7!'
+version = 'I am running on Ari 4.8!'
 
 with open('personality.txt') as f:
     text = f.read()
@@ -23,6 +24,27 @@ dramacounter = []
 
 @client.event
 async def on_message(message):
+    #log stats
+    strauthor = str(message.author)
+    thetimes = str(datetime.now())
+    stattracker.append(message.author)
+    totalmessages.append(message.author)
+    safecounter.append(message.author)
+    #how often message stats are generated
+    if len(safecounter) >= 50:
+        for safevalue in safecounter:
+            safecounter.remove(safevalue)
+        totalstr = str(len(totalmessages))
+        print('Statistics at ' + totalstr + ' total messages since startup ' + thetimes)
+        uniquestat = set(stattracker)
+        for entry in uniquestat:
+            statstr = str(stattracker.count(entry))
+            memstr = str(entry)
+            print(memstr + ' ' + statstr)
+
+    #this logs every message
+    print('at: ' + thetimes + ' ' + strauthor + ': ' + message.content)
+
     # we do not want the bot to reply to itself
     if message.author == client.user:
         return
