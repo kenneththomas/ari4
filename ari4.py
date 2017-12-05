@@ -203,7 +203,10 @@ async def on_message(message):
             time.sleep(.5)
             msg = 'a'
             await client.send_message(message.channel, msg)
-
+ 
+    if message.content == 'ntr':
+        time.sleep(2)
+        await client.delete_message(message)
 
     if message.content.startswith('!version'):
         await client.send_typing(message.channel)
