@@ -1,3 +1,9 @@
+
+***********
+ari 4.8.1
+***********
+honestly the real version is so different now that this is unusable. next update will probably be a rewrite
+
 ************
 ari 4.8
 ************

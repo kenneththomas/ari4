@@ -6,32 +6,52 @@ import markovify
 import maricon
 from datetime import datetime
 
-version = 'I am running on Ari 4.8!'
+version = 'I am running on Ari 4.9!'
 
 with open('personality.txt') as f:
     text = f.read()
 
 text_model = markovify.Text(text)
 
-
+#regexes
 m = re.compile(r'[kK][eE][kK]')
 bgbscanner = re.compile(r'whos [a-z][a-z]b$')
 
 client = discord.Client()
 
+#Various Counters
 kekcounter = []
 dramacounter = []
+stattracker=[]
+safecounter=[]
+totalmessages=[]
+
+#configurable
+BannedWords=["netorare"]
+AdminList["breezyexcursion#9570"]
+
+#For admin-only commands
+
+def adminCheck(acrequest):
+    global isAdmin
+    if acrequest in AdminList:
+        isAdmin = True
+        print('AdminMgr: ' + acrequest + ' authorized to run admin command.')
+    else:
+        isAdmin = False
+        print('AdminMgr: ' + acrequest + ' not authorized to run admin command.')
 
 @client.event
 async def on_message(message):
-    #log stats
+
+#LogMgr
     strauthor = str(message.author)
     thetimes = str(datetime.now())
     stattracker.append(message.author)
     totalmessages.append(message.author)
     safecounter.append(message.author)
     #how often message stats are generated
-    if len(safecounter) >= 50:
+    if len(safecounter) >= 3000:
         for safevalue in safecounter:
             safecounter.remove(safevalue)
         totalstr = str(len(totalmessages))
@@ -78,7 +98,7 @@ async def on_message(message):
         await client.send_message(message.channel, msg)
 
 
-    if ('ari4') in message.content:
+    if ('@ari4') in message.content:
         await client.send_typing(message.channel)
         time.sleep(2)
         msg = text_model.make_short_sentence(140).format(message)
@@ -87,9 +107,6 @@ async def on_message(message):
         time.sleep(5)
         msg = text_model.make_short_sentence(140).format(message)
         await client.send_message(message.channel, msg)
-
-
-#bannedwords, refactor later
 
     match = m.search(message.content)
 
@@ -139,6 +156,7 @@ async def on_message(message):
         await client.delete_message(message)
         msg = 'drama level in chat is currently: ' + str(len(dramacounter))
         await client.send_message(message.channel, msg)
+        #In production, we don't actually use this because it's annoying
         messagepicker = random.randint(1, 4)
         if messagepicker == 1:
             msg = 'https://greatist.com/happiness/breathing-exercises-relax'
@@ -153,23 +171,6 @@ async def on_message(message):
             msg = 'https://www.mindbodygreen.com/0-4386/A-Simple-Breathing-Exercise-to-Calm-Your-Mind-Body.html'
             await client.send_message(message.channel, msg)
 
-
-    if ('trump') in message.content:
-        willitsay = random.randint(1,8)
-        if willitsay == 1:
-            messagepicker = random.randint(1,4)
-            if messagepicker == 1:
-                msg = 'no politica'
-                await client.send_message(message.channel, msg)
-            if messagepicker == 2:
-                msg = 'please tone down the politica'
-                await client.send_message(message.channel, msg)
-            if messagepicker == 3:
-                msg = '3 big evil 1. racism 2. religion 3. politica'
-                await client.send_message(message.channel, msg)
-            if messagepicker == 4:
-                msg = 'politica = enemy universume love'
-                await client.send_message(message.channel, msg)
 
     if message.content.startswith('+'):
         willitsay = random.randint(1,3)
@@ -192,8 +193,8 @@ async def on_message(message):
 
     if message.content.startswith('!nice'):
         await client.send_typing(message.channel)
-	time.sleep(2)
-	msg = '*please be nice in chat*'
+        time.sleep(2)
+        msg = '*please be nice in chat*'
         await client.send_message(message.channel, msg)
 
     if message.content == 'a':
@@ -203,16 +204,49 @@ async def on_message(message):
             time.sleep(.5)
             msg = 'a'
             await client.send_message(message.channel, msg)
- 
-    if message.content == 'ntr':
-        time.sleep(2)
-        await client.delete_message(message)
 
-    if message.content.startswith('!version'):
-        await client.send_typing(message.channel)
-        time.sleep(2)
-        await client.send_message(message.channel, version)
+ #BannedWordsMgr
 
+            # BannedWordsMgr
+
+        if message.content == ('!banword list'):
+            print(BannedWords)
+            msg = BannedWords
+            await client.send_message(message.channel, msg)
+
+        for BannedWord in BannedWords:
+            if BannedWord in message.content:
+                time.sleep(2)
+                await client.delete_message(message)
+                print('BannedWordsMgr: deleted message with ' + BannedWord)
+
+        if message.content.startswith('!banword add'):
+            adminCheck(strauthor)
+            if isAdmin == False:
+                return
+            addword = message.content.split(" ")
+            BannedWords.append(addword[2])
+            msg = addword[2] + " added to banned words list."
+            await client.send_message(message.channel, msg)
+            print('BannedWordsMgr: Added ' + addword[2] + ' to banned words list.')
+            print(BannedWords)
+
+        if message.content.startswith('!banword remove'):
+            adminCheck(strauthor)
+            if isAdmin == False:
+                return
+            removeword = message.content.split(" ")
+            BannedWords.remove(removeword[2])
+            msg = removeword[2] + " removed from banned words list."
+            await client.send_message(message.channel, msg)
+            print('BannedWordsMgr: Removed ' + removeword[2] + ' from banned words list.')
+
+            # until i can figure out how to put a regex in a list
+
+        if message.content == ('ntr'):
+            time.sleep(2)
+            await client.delete_message(message)
+            print('BannedWordsMgr: deleted ntr message')
 
 
 @client.event
@@ -223,4 +257,4 @@ async def on_ready():
     print('------')
 
 
-client.run('maricon.key')
+client.run(maricon.key)
