@@ -5,6 +5,7 @@ import time
 import markovify
 import maricon
 from datetime import datetime
+import asyncio
 
 version = 'I am running on Ari 4.9!'
 
@@ -77,7 +78,7 @@ async def on_message(message):
 
     if ('retard') in message.content:
         await client.send_typing(message.channel)
-        time.sleep(.5)
+        asyncio.sleep(.5)
         msg = '{0.author.mention}, please watch your language. Next time, say r*tard.'.format(message)
         await client.send_message(message.channel, msg)
 
@@ -100,11 +101,11 @@ async def on_message(message):
 
     if ('@ari4') in message.content:
         await client.send_typing(message.channel)
-        time.sleep(2)
+        asyncio.sleep(2)
         msg = text_model.make_short_sentence(140).format(message)
         await client.send_message(message.channel, msg)
         await client.send_typing(message.channel)
-        time.sleep(5)
+        asyncio.sleep(5)
         msg = text_model.make_short_sentence(140).format(message)
         await client.send_message(message.channel, msg)
 
@@ -176,14 +177,14 @@ async def on_message(message):
         willitsay = random.randint(1,3)
         if willitsay == 1:
             await client.send_typing(message.channel)
-            time.sleep(.5)
+            asyncio.sleep(.5)
             msg = '+'
             await client.send_message(message.channel, msg)
 
     if message.content.startswith('whos mans is this'):
         messagepicker = random.randint(1, 2)
         await client.send_typing(message.channel)
-        time.sleep(2)
+        asyncio.sleep(2)
         if messagepicker == 1:
             msg = 'absolutely whos mans'
             await client.send_message(message.channel, msg)
@@ -193,7 +194,7 @@ async def on_message(message):
 
     if message.content.startswith('!nice'):
         await client.send_typing(message.channel)
-        time.sleep(2)
+        asyncio.sleep(2)
         msg = '*please be nice in chat*'
         await client.send_message(message.channel, msg)
 
@@ -201,7 +202,7 @@ async def on_message(message):
         willitsay = random.randint(1,8)
         if willitsay == 1:
             await client.send_typing(message.channel)
-            time.sleep(.5)
+            asyncio.sleep(.5)
             msg = 'a'
             await client.send_message(message.channel, msg)
 
@@ -216,7 +217,7 @@ async def on_message(message):
 
         for BannedWord in BannedWords:
             if BannedWord in message.content:
-                time.sleep(2)
+                asyncio.sleep(2)
                 await client.delete_message(message)
                 print('BannedWordsMgr: deleted message with ' + BannedWord)
 
@@ -244,7 +245,7 @@ async def on_message(message):
             # until i can figure out how to put a regex in a list
 
         if message.content == ('ntr'):
-            time.sleep(2)
+            asyncio.sleep(2)
             await client.delete_message(message)
             print('BannedWordsMgr: deleted ntr message')
 
