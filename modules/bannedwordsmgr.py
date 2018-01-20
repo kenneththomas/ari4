@@ -38,7 +38,7 @@ def checkword(message):
         return True
 
 nwordvariants = ['nigga','nigger','niqqa']
-blackpeople = ['TK#9181','Flam#5606','Sicachu#9075','wlof aubro#7636','MegaTech#3319']
+blackpeople = []
 passpeople = []
 
 def nwordcheck(message,author):
@@ -51,13 +51,13 @@ def nwordcheck(message,author):
 
 def isuserblack(author):
     if author in blackpeople:
-        print(author + ' is black')
+        print('BannedWordsMgr: ' + author + ' is black')
         return True
     if author in passpeople:
-        print(author + ' has a pass')
+        print('BannedWordsMgr: ' + author + ' has a pass')
         return True
     else:
-        print(author + ' is not black, deleting message')
+        print('BannedWordsMgr: ' + author + ' is not black, deleting message')
         return False
 
 def blackcess(message,author):
