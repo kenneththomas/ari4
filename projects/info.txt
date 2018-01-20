@@ -1,1 +1,0 @@
-basically just doing some idea building here. when things in here actually become functional, they'll just be moved to the main file.
