@@ -1,4 +1,5 @@
 import random
+from re import compile
 
 def chance(x):
     saychance = random.randint(1,x)
@@ -11,7 +12,6 @@ def chance(x):
     return chancerespond
 
 def memes(message):
-
 
     mememessages=[] #contains all messages that mememgr will return
 
@@ -30,5 +30,20 @@ def memes(message):
         if chancerespond == True:
             mememessages.append('a')
 
+    if message == 'push me to the edge':
+        mememessages.append('all my friends are dead')
+
+    if message == 'all my friends are dead':
+        mememessages.append('push me to the edge')
+
 
     return mememessages
+
+bgbscanner = compile(r'whos [a-z][a-z]b$')
+
+def whosbgb(message):
+    bgbmatch = bgbscanner.search(message)
+    if bgbmatch:
+        response = message[5] + 'ill ' + message[6] + 'arlsby'
+        print('MemeMgr: Found BGB Match')
+        return response

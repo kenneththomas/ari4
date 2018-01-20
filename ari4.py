@@ -1,9 +1,5 @@
 import discord
-import re
-import random
-import time
 import maricon
-from datetime import datetime
 import asyncio
 
 #import ari4 modules
@@ -11,6 +7,7 @@ import sys
 sys.path.insert(0, 'modules')
 import logmgr
 import mememgr
+import bannedwordsmgr
 
 
 #regexes
@@ -32,6 +29,24 @@ async def on_message(message):
     for meme in memes:
         await client.send_message(message.channel, meme)
 
+    who = mememgr.whosbgb(message.content.lower())
+
+    if who:
+        await client.send_message(message.channel, who)
+
+#BannedWordsMgr
+
+    bwadmin = bannedwordsmgr.bwadmin(message.content,str(message.author))
+    if bwadmin:
+        await client.send_message(message.channel, bwadmin)
+
+    bwcheck = bannedwordsmgr.checkword(message.content.lower())
+
+    if bwcheck:
+        if bwadmin: # it looks stupid if you run an admin and then it deletes it so never delete any bwadmin messages
+            return
+        asyncio.sleep(2)
+        await client.delete_message(message)
 
 @client.event
 async def on_ready():
