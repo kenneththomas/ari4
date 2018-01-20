@@ -36,3 +36,37 @@ def checkword(message):
     if message == ('ntr'):
         print('BannedWordsMgr: deleted ntr message')
         return True
+
+nwordvariants = ['nigga','nigger','niqqa']
+blackpeople = []
+passpeople = []
+
+def nwordcheck(message,author):
+    for nword in nwordvariants:
+        if nword in message:
+            if isuserblack(author):
+                return True
+            else:
+                return False
+
+def isuserblack(author):
+    if author in blackpeople:
+        print('BannedWordsMgr: ' + author + ' is black')
+        return True
+    if author in passpeople:
+        print('BannedWordsMgr: ' + author + ' has a pass')
+        return True
+    else:
+        print('BannedWordsMgr: ' + author + ' is not black, deleting message')
+        return False
+
+def blackcess(message,author):
+    if author in blackpeople:
+        if message.startswith('!pass give'):
+            giveblackcess = message.split(" ")
+            print(author + ' has given ' + giveblackcess[2] + ' a pass')
+            passpeople.append(giveblackcess[2])
+        if message.startswith('!pass revoke'):
+            removeblackcess = message.split(" ")
+            print(author + ' has revoked the rights of ' + removeblackcess[2])
+            passpeople.remove(removeblackcess[2])
