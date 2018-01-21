@@ -4,7 +4,6 @@ import asyncio
 
 # import ari4 modules
 import sys
-
 sys.path.insert(0, 'modules')
 import logmgr
 import mememgr
@@ -12,7 +11,6 @@ import bannedwordsmgr
 
 # regexes
 client = discord.Client()
-
 
 @client.event
 async def on_message(message):
@@ -60,6 +58,5 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
-
 
 client.run(maricon.key)
