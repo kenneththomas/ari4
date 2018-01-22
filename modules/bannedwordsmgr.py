@@ -1,8 +1,9 @@
 import adminmgr
 
-BannedWords = ["netorare"]
+BannedWords = ["netorare']
 
 BannedWordsEnabled = True
+payload=['DoNotDelete']
 
 
 def permission(author):
@@ -86,15 +87,20 @@ def blackcess(message, author):
             print(author + ' has revoked the rights of ' + removeblackcess[2])
             passpeople.remove(removeblackcess[2])
 
-
-def bwlist(message):
-    if message == ('!banword list'):
-        return BannedWords
-
-
 def bwm(message, author):
+    payload = ['DoNotDelete']
     bwadmin(message, author)
-    bwlist(message)
+    #bwlist
+    if message == ('!banword list'):
+        payload.append('Banned Words include: ' + str(BannedWords))
+    blackcess(message, author)
+    msgdelete = False
     if BannedWordsEnabled is True:
-        checkword(message)
-        nwordcheck(message, author)
+        if checkword(message) is True:
+            msgdelete = True
+        if nwordcheck(message, author) is False:
+            msgdelete = True
+    if msgdelete == True:
+        payload[0] = 'Delete'
+    return payload
+

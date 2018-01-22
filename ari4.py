@@ -32,25 +32,13 @@ async def on_message(message):
         await client.send_message(message.channel, who)
 
     # BannedWordsMgr
-
-    bwadmin = bannedwordsmgr.bwadmin(message.content, str(message.author))
-    if bwadmin:
-        await client.send_message(message.channel, bwadmin)
-
-    bwcheck = bannedwordsmgr.checkword(message.content.lower())
-
-    if bwcheck:
-        if bwadmin:  # it looks stupid if you run an admin and then it deletes it so never delete any bwadmin messages
-            return
-        asyncio.sleep(2)
+    bwm = bannedwordsmgr.bwm(message.content, str(message.author))
+    if bwm[0] == 'Delete':
         await client.delete_message(message)
+    elif len(bwm) > 1:
+        for bwmx in bwm:
+            await client.send_message(message.channel, bwmx)
 
-    haspass = bannedwordsmgr.nwordcheck(message.content.lower(), str(message.author))
-
-    if haspass == False:
-        await client.delete_message(message)
-
-    bannedwordsmgr.blackcess(message.content, str(message.author))
 
 @client.event
 async def on_ready():
