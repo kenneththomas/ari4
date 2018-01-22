@@ -1,9 +1,8 @@
 import adminmgr
 
-BannedWords = ["netorare']
+BannedWords = ["netorare"]
 
 BannedWordsEnabled = True
-payload=['DoNotDelete']
 
 
 def permission(author):
@@ -15,6 +14,8 @@ def bwadmin(message, author):
     global BannedWordsEnabled
 
     if message.startswith('!banword'):
+        if message.startswith('!banword list'): # dont check admin for banword list
+            return
         if permission(author) is False:
             return
 
@@ -103,4 +104,3 @@ def bwm(message, author):
     if msgdelete == True:
         payload[0] = 'Delete'
     return payload
-
