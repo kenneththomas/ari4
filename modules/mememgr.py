@@ -8,7 +8,6 @@ def chance(x):
         print('MemeMgr: Memed with a chance of 1/' + str(x))
     else:
         chancerespond = False
-
     return chancerespond
 
 def memes(message):
@@ -35,7 +34,6 @@ def memes(message):
 
     if message == 'all my friends are dead':
         mememessages.append('push me to the edge')
-
 
     return mememessages
 

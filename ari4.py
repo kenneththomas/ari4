@@ -4,7 +4,6 @@ import asyncio
 
 # import ari4 modules
 import sys
-
 sys.path.insert(0, 'modules')
 import logmgr
 import mememgr
@@ -12,7 +11,6 @@ import bannedwordsmgr
 
 # regexes
 client = discord.Client()
-
 
 @client.event
 async def on_message(message):
@@ -34,25 +32,13 @@ async def on_message(message):
         await client.send_message(message.channel, who)
 
     # BannedWordsMgr
-
-    bwadmin = bannedwordsmgr.bwadmin(message.content, str(message.author))
-    if bwadmin:
-        await client.send_message(message.channel, bwadmin)
-
-    bwcheck = bannedwordsmgr.checkword(message.content.lower())
-
-    if bwcheck:
-        if bwadmin:  # it looks stupid if you run an admin and then it deletes it so never delete any bwadmin messages
-            return
-        asyncio.sleep(2)
+    bwm = bannedwordsmgr.bwm(message.content, str(message.author))
+    if bwm[0] == 'Delete':
         await client.delete_message(message)
+    elif len(bwm) > 1:
+        for bwmx in bwm:
+            await client.send_message(message.channel, bwmx)
 
-    haspass = bannedwordsmgr.nwordcheck(message.content.lower(), str(message.author))
-
-    if haspass == False:
-        await client.delete_message(message)
-
-    bannedwordsmgr.blackcess(message.content, str(message.author))
 
 @client.event
 async def on_ready():
@@ -60,6 +46,5 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
-
 
 client.run(maricon.key)
