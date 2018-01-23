@@ -90,10 +90,10 @@ def blackcess(message, author):
 
 def bwm(message, author):
     payload = ['DoNotDelete']
-    bwadmin(message, author)
-    #bwlist
     if message == ('!banword list'):
         payload.append('Banned Words include: ' + str(BannedWords))
+        return payload
+    bwadmin(message, author)
     blackcess(message, author)
     msgdelete = False
     if BannedWordsEnabled is True:

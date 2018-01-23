@@ -15,4 +15,4 @@ bannedwordsmgr.bwm('!banword enable','breezyexcursion#9570')
 bannedwordsmgr.bwm('netorare','bobby')
 
 #TEST 3 - List Banwords
-bannedwordsmgr.bwm('!banword list','whoever')
+print(bannedwordsmgr.bwm('!banword list','whoever'))
