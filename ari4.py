@@ -22,14 +22,9 @@ async def on_message(message):
         return
 
     # MemeMgr
-    memes = mememgr.memes(message.content)
+    memes = mememgr.memes(message.content.lower())
     for meme in memes:
         await client.send_message(message.channel, meme)
-
-    who = mememgr.whosbgb(message.content.lower())
-
-    if who:
-        await client.send_message(message.channel, who)
 
     # BannedWordsMgr
     bwm = bannedwordsmgr.bwm(message.content, str(message.author))

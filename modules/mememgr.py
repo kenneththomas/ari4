@@ -10,6 +10,8 @@ def chance(x):
         chancerespond = False
     return chancerespond
 
+bgbscanner = compile(r'whos [a-z][a-z]b$')
+
 def memes(message):
 
     mememessages=[] #contains all messages that mememgr will return
@@ -35,13 +37,11 @@ def memes(message):
     if message == 'all my friends are dead':
         mememessages.append('push me to the edge')
 
-    return mememessages
 
-bgbscanner = compile(r'whos [a-z][a-z]b$')
-
-def whosbgb(message):
     bgbmatch = bgbscanner.search(message)
     if bgbmatch:
         response = message[5] + 'ill ' + message[6] + 'arlsby'
         print('MemeMgr: Found BGB Match')
-        return response
+        mememessages.append(response)
+
+    return mememessages
