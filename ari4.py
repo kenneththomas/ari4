@@ -34,6 +34,11 @@ async def on_message(message):
         for bwmx in bwm:
             await client.send_message(message.channel, bwmx)
 
+    # Purity
+    purity = purity.control(message)
+    for pmsg in purity:
+        await client.send_message(message.channel, pmsg)
+
 
 @client.event
 async def on_ready():
