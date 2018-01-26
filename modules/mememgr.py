@@ -19,7 +19,7 @@ def memes(message):
     if message == 'hi':
         chancerespond = chance(6)
         if chancerespond == True:
-            mememessages.append('a')
+            mememessages.append('hi')
 
     if message == '+':
         chancerespond = chance(6)
