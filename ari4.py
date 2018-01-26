@@ -35,8 +35,8 @@ async def on_message(message):
             await client.send_message(message.channel, bwmx)
 
     # Purity
-    purity = puritymgr.control(message.content)
-    for pmsg in purity:
+    prcntrl = purity.control(message.content)
+    for pmsg in prtyx:
         await client.send_message(message.channel, pmsg)
 
 
