@@ -17,7 +17,7 @@ def repeater(message):
 def control(message):
     payload=[]
     if repeater(message):
-        payload.append('hi')
+        payload.append(message)
     return payload
 
 

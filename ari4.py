@@ -8,7 +8,7 @@ sys.path.insert(0, 'modules')
 import logmgr
 import mememgr
 import bannedwordsmgr
-
+import purity
 # regexes
 client = discord.Client()
 
