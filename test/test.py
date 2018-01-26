@@ -5,7 +5,7 @@ sys.path.insert(0, '../modules')
 import logmgr
 import mememgr
 import bannedwordsmgr
-import purity
+import puritymgr
 import unittest
 
 
@@ -64,8 +64,8 @@ class memetests(unittest.TestCase):
 class puritytests(unittest.TestCase):
     def test_repeater(self):
         #this assumes repeater is set to 4. we can probably make this check whatever the value is and code in a loop instead
-        purity.control('.')
-        purity.control('.')
-        purity.control('.')
-        tr1 = purity.control('.')
+        puritymgr.control('.')
+        puritymgr.control('.')
+        puritymgr.control('.')
+        tr1 = puritymgr.control('.')
         self.assertEqual(tr1[0], '.')
