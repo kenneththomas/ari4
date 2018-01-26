@@ -8,7 +8,7 @@ sys.path.insert(0, 'modules')
 import logmgr
 import mememgr
 import bannedwordsmgr
-import purity
+import puritymgr
 # regexes
 client = discord.Client()
 
@@ -35,7 +35,7 @@ async def on_message(message):
             await client.send_message(message.channel, bwmx)
 
     # Purity
-    purity = purity.control(message)
+    purity = puritymgr.control(message.content)
     for pmsg in purity:
         await client.send_message(message.channel, pmsg)
 
