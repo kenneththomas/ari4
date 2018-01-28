@@ -31,12 +31,11 @@ async def on_message(message):
     if bwm[0] == 'Delete':
         await client.delete_message(message)
     elif len(bwm) > 1:
-        for bwmx in bwm:
-            await client.send_message(message.channel, bwmx)
+        await client.send_message(message.channel, bwmx[1])
 
     # Purity
-    purity = puritymgr.control(message.content)
-    for pmsg in purity:
+    prcntrl = purity.control(message.content)
+    for pmsg in prtyx:
         await client.send_message(message.channel, pmsg)
 
 

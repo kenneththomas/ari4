@@ -5,7 +5,7 @@ sys.path.insert(0, '../modules')
 import logmgr
 import mememgr
 import bannedwordsmgr
-import puritymgr
+import purity
 import unittest
 
 
@@ -61,11 +61,11 @@ class memetests(unittest.TestCase):
         who = mememgr.memes('whos bgb')
         self.assertEqual(who[0], 'bill garlsby')
 
-class puritytests(unittest.TestCase):
+class   puritytests(unittest.TestCase):
     def test_repeater(self):
         #this assumes repeater is set to 4. we can probably make this check whatever the value is and code in a loop instead
-        puritymgr.control('.')
-        puritymgr.control('.')
-        puritymgr.control('.')
-        tr1 = puritymgr.control('.')
+        purity.control('.')
+        purity.control('.')
+        purity.control('.')
+        tr1 =   purity.control('.')
         self.assertEqual(tr1[0], '.')
