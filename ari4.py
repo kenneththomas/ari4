@@ -15,7 +15,9 @@ client = discord.Client()
 @client.event
 async def on_message(message):
     # LogMgr
-    thetimes = logmgr.messagelogger(str(message.author), message.content)
+    activity = logmgr.logmain(str(message.author),message.content)
+    if activity:
+        await client.send_message(message.channel, activity)
 
     # we do not want the bot to reply to itself
     if message.author == client.user:

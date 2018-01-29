@@ -7,3 +7,12 @@ def messagelogger(author,message):
     totalmessages.append(author)
     print('at: ' + thetimes + ' ' + author + ': ' + message)
     return thetimes
+
+def activity(message):
+    if message == '!activity':
+        return totalmessages
+
+def logmain(author,message):
+    messagelogger(author,message)
+    acmsg = activity(message)
+    return str.acmsg + ' messages since startup'
