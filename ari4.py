@@ -1,14 +1,14 @@
-import discord
-import maricon
-import asyncio
-
 # import ari4 modules
 import sys
+
+import discord
+
 sys.path.insert(0, 'modules')
+from modules import maricon
 import logmgr
 import mememgr
 import bannedwordsmgr
-import puritymgr
+import purity
 # regexes
 client = discord.Client()
 
@@ -27,7 +27,7 @@ async def on_message(message):
         await client.send_message(message.channel, meme)
 
     # BannedWordsMgr
-    bwm = bannedwordsmgr.bwm(message.content, str(message.author))
+    bwm = bannedwordsmgr.bwm(message.content.lower(), str(message.author))
     if bwm[0] == 'Delete':
         await client.delete_message(message)
     elif len(bwm) > 1:

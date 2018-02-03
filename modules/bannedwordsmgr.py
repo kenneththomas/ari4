@@ -1,4 +1,5 @@
 import adminmgr
+import maricon
 
 BannedWords = ["netorare"]
 
@@ -52,7 +53,7 @@ def checkword(message):
 
 
 nwordvariants = ['nigga', 'nigger', 'niqqa']
-blackpeople = []
+blackpeople = maricon.bpp
 passpeople = []
 
 
