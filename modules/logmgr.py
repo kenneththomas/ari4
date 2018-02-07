@@ -14,6 +14,5 @@ def activity(message):
 
 def logmain(author,message):
     messagelogger(author,message)
-    acmsg = activity(message)
     if activity(message):
         return str.acmsg + ' messages since startup'
