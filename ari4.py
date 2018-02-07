@@ -9,7 +9,9 @@ import logmgr
 import mememgr
 import bannedwordsmgr
 import purity
-# regexes
+import intelligence
+
+
 client = discord.Client()
 
 @client.event
@@ -23,6 +25,11 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    if message.content == '!talk':
+        await client.send_message(message.channel, intelligence.generate())
+        #if ari4 talks dont do anything else
+        return
+
     # MemeMgr
     memes = mememgr.memes(message.content.lower())
     for meme in memes:
@@ -33,11 +40,11 @@ async def on_message(message):
     if bwm[0] == 'Delete':
         await client.delete_message(message)
     elif len(bwm) > 1:
-        await client.send_message(message.channel, bwmx[1])
+        await client.send_message(message.channel, bwm[1])
 
     # Purity
     prcntrl = purity.control(message.content)
-    for pmsg in prtyx:
+    for pmsg in prcntrl:
         await client.send_message(message.channel, pmsg)
 
 
