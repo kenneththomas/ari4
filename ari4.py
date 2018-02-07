@@ -24,11 +24,11 @@ async def on_message(message):
     # we do not want the bot to reply to itself
     if message.author == client.user:
         return
-
-    if message.content == '!talk':
-        await client.send_message(message.channel, intelligence.generate())
+    # this isnt ready
+    #if message.content == '!talk':
+    #    await client.send_message(message.channel, intelligence.generate())
         #if ari4 talks dont do anything else
-        return
+    #    return
 
     # MemeMgr
     memes = mememgr.memes(message.content.lower())
