@@ -17,18 +17,15 @@ def memes(message):
     mememessages=[] #contains all messages that mememgr will return
 
     if message == 'hi':
-        chancerespond = chance(6)
-        if chancerespond == True:
+        if chance(6):
             mememessages.append('hi')
 
     if message == '+':
-        chancerespond = chance(6)
-        if chancerespond == True:
+        if chance(6):
             mememessages.append('+')
 
     if message == 'a':
-        chancerespond = chance(7)
-        if chancerespond == True:
+        if chance(7):
             mememessages.append('a')
 
     if message == 'push me to the edge':

@@ -69,3 +69,9 @@ class   puritytests(unittest.TestCase):
         purity.control('.')
         tr1 =   purity.control('.')
         self.assertEqual(tr1[0], '.')
+
+class logtest(unittest.TestCase):
+    def test_netorare(self):
+        # payload should come back with "Delete" if a banned word is used
+        payload = bannedwordsmgr.bwm('netorare', 'bobby')
+        self.assertEqual(payload[0], 'Delete')
