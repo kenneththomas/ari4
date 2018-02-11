@@ -1,6 +1,7 @@
 import random
 from re import compile
 
+
 def chance(x):
     saychance = random.randint(1,x)
     if saychance == 1:
@@ -10,7 +11,7 @@ def chance(x):
         chancerespond = False
     return chancerespond
 
-bgbscanner = compile(r'whos [a-z][a-z]b$')
+bgbscanner = compile(r'whos [a-z][a-z][a-z]$')
 
 def memes(message):
 

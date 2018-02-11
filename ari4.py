@@ -27,7 +27,7 @@ async def on_message(message):
     # this isnt ready
     #if message.content == '!talk':
     #    await client.send_message(message.channel, intelligence.generate())
-        #if ari4 talks dont do anything else
+    #if ari4 talks dont do anything else
     #    return
 
     # MemeMgr
