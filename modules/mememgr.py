@@ -1,6 +1,7 @@
 import random
 from re import compile
 
+
 def chance(x):
     saychance = random.randint(1,x)
     if saychance == 1:
@@ -10,7 +11,7 @@ def chance(x):
         chancerespond = False
     return chancerespond
 
-bgbscanner = compile(r'whos [a-z][a-z]b$')
+bgbscanner = compile(r'whos [a-z][a-z][a-z]$')
 
 def memes(message):
 
@@ -34,6 +35,10 @@ def memes(message):
     if message == 'all my friends are dead':
         mememessages.append('push me to the edge')
 
+    if 'wendy' in message:
+        if chance(5):
+            mememessages.append(wendy())
+
 
     bgbmatch = bgbscanner.search(message)
     if bgbmatch:
@@ -42,3 +47,18 @@ def memes(message):
         mememessages.append(response)
 
     return mememessages
+
+def wendy():
+    wendypicker = messagepicker(4)
+    if wendypicker == 1:
+        return('i heard wendy is hot')
+    if wendypicker == 2:
+        return('do you think wendy is hot?')
+    if wendypicker == 3:
+        return('i bet wendy isn\'t even hot')
+    if wendypicker == 4:
+        return('do you think wendy is hot?')
+
+
+def messagepicker(choices):
+    return random.randint(1, choices)
