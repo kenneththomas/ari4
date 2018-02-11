@@ -42,7 +42,7 @@ def memes(message):
 
     bgbmatch = bgbscanner.search(message)
     if bgbmatch:
-        response = message[5] + 'ill ' + message[6] + 'arlsby'
+        response = message[5] + 'ill ' + message[6] + 'arls' + message[7] + 'y'
         print('MemeMgr: Found BGB Match')
         mememessages.append(response)
 
