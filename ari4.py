@@ -2,6 +2,7 @@
 import sys
 
 import discord
+import asyncio
 
 sys.path.insert(0, 'modules')
 from modules import maricon
@@ -33,7 +34,7 @@ async def on_message(message):
     memes = mememgr.memes(message.content.lower())
     for meme in memes:
         await client.send_typing(message.channel)
-        asyncio.sleep(.5)
+        asyncio.sleep(1)
         await client.send_message(message.channel, meme)
 
     # BannedWordsMgr
