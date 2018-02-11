@@ -27,12 +27,13 @@ async def on_message(message):
     # this isnt ready
     #if message.content == '!talk':
     #    await client.send_message(message.channel, intelligence.generate())
-    #if ari4 talks dont do anything else
-    #    return
+    #    return  #if ari4 talks dont do anything else
 
     # MemeMgr
     memes = mememgr.memes(message.content.lower())
     for meme in memes:
+        await client.send_typing(message.channel)
+        asyncio.sleep(.5)
         await client.send_message(message.channel, meme)
 
     # BannedWordsMgr
