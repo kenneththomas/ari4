@@ -12,23 +12,23 @@ import bannedwordsmgr
 import purity
 import intelligence
 
-
 client = discord.Client()
+
 
 @client.event
 async def on_message(message):
     # LogMgr
-    activity = logmgr.logmain(str(message.author),message.content)
+    activity = logmgr.logmain(str(message.author), message.content)
     if activity:
         await client.send_message(message.channel, activity)
 
     # we do not want the bot to reply to itself
     if message.author == client.user:
         return
-    # this isnt ready
-    #if message.content == '!talk':
-    #    await client.send_message(message.channel, intelligence.generate())
-    #    return  #if ari4 talks dont do anything else
+
+    if message.content == '!talk':
+        await client.send_message(message.channel, intelligence.generate())
+        return  # if ari4 talks dont do anything else
 
     # MemeMgr
     memes = mememgr.memes(message.content.lower())
@@ -56,5 +56,6 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
+
 
 client.run(maricon.key)
