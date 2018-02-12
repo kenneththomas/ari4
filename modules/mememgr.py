@@ -46,6 +46,20 @@ def memes(message):
         print('MemeMgr: Found BGB Match')
         mememessages.append(response)
 
+
+    #rare pepes
+    if chance(99999):
+        rarepicker = messagepicker(4)
+        if rarepicker == 1:
+            mememessages.append('zip zop')
+        if rarepicker == 2:
+            mememessages.append('im gay')
+        if rarepicker == 3:
+            mememessages.append('hey evryone whatsup gamboys')
+        if rarepicker == 4:
+            mememessages.append('whats cat up to')
+
+
     return mememessages
 
 def wendy():
@@ -57,7 +71,7 @@ def wendy():
     if wendypicker == 3:
         return('i bet wendy isn\'t even hot')
     if wendypicker == 4:
-        return('do you think wendy is hot?')
+        return('wendy is definitely hot')
 
 
 def messagepicker(choices):
